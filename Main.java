@@ -7,5 +7,6 @@ public class Main {
         MenuContexto menuContext = new MenuContexto(scanner);
         menuContext.ejecutar();
         scanner.close();
+        ConexionJDBC.cerrarConexion();
     }
 }

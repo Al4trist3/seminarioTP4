@@ -22,7 +22,7 @@ public class Sumario {
         this.fiscal = fiscal;
         this.imputados = imputados;
         this.damnificados = damnificados;
-        this.diligencias = new Vector<>();
+        this.diligencias = SumarioDAO.instancia().obtenerDiligenciasSumario(id);
     }
 
 
@@ -110,25 +110,9 @@ public class Sumario {
         this.diligencias.remove(diligencia);
     }
 
-    public String generarCaratula() {
-        String caratula =
-            "Numero: " + this.getNumero() + "\n"
-            + "Juzgado: " + this.getJuzgado() + "\n"
-            + "Fiscalia: " + this.getFiscalia() + "\n"
-            + "Juez: " + this.getJuez() + "\n"
-            + "Fiscal: " + this.getFiscal() + "\n" 
-            +"Imputados: " + this.getImputados() + "\n"
-            + "Damnificados: " + this.getDamnificados();
-        return caratula;
-    }
 
     public void imprimirSumario() {
-        System.out.println("============================================");
-        System.out.println(this.generarCaratula());
-        for(Diligencia diligencia: this.diligencias) {
-            System.out.println("-----------------------------------------");
-            System.out.println(diligencia.generarTextoCuerpo());
-        }
+       SumarioPDF.imprimirSumario(this);
     }
 }
 
